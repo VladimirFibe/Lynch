@@ -2,6 +2,11 @@ import SwiftUI
 import CoreLocation
 struct ContentView: View {
     @State private var location = ""
+    @State var forecast: Forecast? = nil
+    var dateFormatter = DateFormatter()
+    init() {
+        dateFormatter.dateFormat = "E, MMM, d"
+    }
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,7 +24,35 @@ struct ContentView: View {
                     }
 
                 }
-                Spacer()
+                if let forecast = forecast {
+                    List(forecast.daily, id: \.dt) { day in
+                        VStack(alignment: .leading) {
+                            Text(dateFormatter.string(from: day.dt))
+                                .fontWeight(.bold)
+                            HStack(alignment: .top) {
+                                Image(systemName: "hourglass")
+                                    .font(.title)
+                                    .frame(width: 50, height: 50)
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.green))
+                                VStack(alignment: .leading) {
+                                    Text(day.weather[0].description.capitalized)
+                                    HStack {
+                                        Text("High: \(day.temp.max, specifier: "%0.f")")
+                                        Text("Low: \(day.temp.min, specifier: "%0.f")")
+                                    }
+                                    HStack {
+                                        Text("Clouds: \(day.clouds)")
+                                        Text("POP: \(day.pop, specifier: "%0.2f")")
+                                    }
+                                    Text("Humidity: \(day.humidity)")
+                                }
+                            }
+                        }
+                    }
+                    .listStyle(.plain)
+                } else {
+                    Spacer()
+                }
             }
             .padding()
             .navigationTitle("Mobile Weather")
@@ -28,8 +61,6 @@ struct ContentView: View {
     
     func getWeatherForecast(for location: String) {
         let apiService = APIService.shared
-        var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, MMM, d"
 
         CLGeocoder().geocodeAddressString(location) { placemarks, error in
             if let error = error {
@@ -40,16 +71,7 @@ struct ContentView: View {
                 apiService.getJSON(from: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&exclude=current,minutely,hourly,alerts&appid=6fa522e5b709fdd1749b9d9459f7e897", dateDecodingStrategy: .secondsSince1970, keyDecodingStrategy: .useDefaultKeys) { (result: Result<Forecast, APIService.APIError>) in
                     switch result {
                     case .success(let forecast):
-                        for day in forecast.daily {
-                            print(dateFormatter.string(from: day.dt))
-                            print(" Max: ", day.temp.max)
-                            print(" Min: ", day.temp.min)
-                            print(" Humidity: ", day.humidity)
-                            print(" Description: ", day.weather[0].description)
-                            print(" Clouds: ", day.clouds)
-                            print(" Pop: ", day.pop)
-                            print(" IconURL: ", day.weather[0].weatherIconURL)
-                        }
+                        self.forecast = forecast
                     case .failure(let failure):
                         print(failure)
                     }

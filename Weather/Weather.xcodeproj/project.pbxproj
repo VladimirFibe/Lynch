@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27162F3929A94CF900320395 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27162F3829A94CF900320395 /* ForecastViewModel.swift */; };
 		27CA8C2D29A8D83A0027AC06 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA8C2C29A8D83A0027AC06 /* WeatherApp.swift */; };
 		27CA8C2F29A8D83A0027AC06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA8C2E29A8D83A0027AC06 /* ContentView.swift */; };
 		27CA8C3129A8D83B0027AC06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CA8C3029A8D83B0027AC06 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27162F3829A94CF900320395 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		27CA8C2929A8D83A0027AC06 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CA8C2C29A8D83A0027AC06 /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		27CA8C2E29A8D83A0027AC06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				27CA8C2E29A8D83A0027AC06 /* ContentView.swift */,
 				27CA8C3A29A8D87D0027AC06 /* APIService.swift */,
 				27CA8C3D29A8D9230027AC06 /* Forecast.swift */,
+				27162F3829A94CF900320395 /* ForecastViewModel.swift */,
 				27CA8C3029A8D83B0027AC06 /* Assets.xcassets */,
 				27CA8C3229A8D83B0027AC06 /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 				27CA8C2F29A8D83A0027AC06 /* ContentView.swift in Sources */,
 				27CA8C3B29A8D87D0027AC06 /* APIService.swift in Sources */,
 				27CA8C2D29A8D83A0027AC06 /* WeatherApp.swift in Sources */,
+				27162F3929A94CF900320395 /* ForecastViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

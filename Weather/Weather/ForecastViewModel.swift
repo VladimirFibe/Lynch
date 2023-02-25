@@ -2,6 +2,7 @@ import Foundation
 
 struct ForecastViewModel {
     let forecast: Forecast.Daily
+    var system: Int
     
     private static var dateFormater: DateFormatter {
         let dateFormatter = DateFormatter()
@@ -21,6 +22,10 @@ struct ForecastViewModel {
         return numberFormatter
     }
     
+    func convert(_ temp: Double) -> Double {
+        let celsius = temp - 273.5
+        return system == 0 ? celsius : 1.8 * celsius + 32
+    }
     var day: String {
         Self.dateFormater.string(from: forecast.dt)
     }
@@ -30,11 +35,11 @@ struct ForecastViewModel {
     }
     
     var high: String {
-        "H: \(Self.numberFormatter.string(for: forecast.temp.max) ?? "0")°"
+        "H: \(Self.numberFormatter.string(for: convert(forecast.temp.max)) ?? "0")°"
     }
     
     var low: String {
-        "L: \(Self.numberFormatter.string(for: forecast.temp.min) ?? "0")°"
+        "L: \(Self.numberFormatter.string(for: convert(forecast.temp.min)) ?? "0")°"
     }
     
     var pop: String {

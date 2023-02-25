@@ -5,6 +5,15 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Picker(selection: $viewModel.system) {
+                    Text("°C").tag(0)
+                    Text("°F").tag(1)
+                } label: {
+                    Text("System")
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 100)
+                .padding(.vertical)
                 HStack {
                     TextField("Enter Location", text: $viewModel.location)
                         .textFieldStyle(.roundedBorder)

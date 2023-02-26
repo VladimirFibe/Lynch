@@ -53,4 +53,8 @@ struct ForecastViewModel {
     var humidity: String {
         "Humidity: \(forecast.humidity)%"
     }
+    
+    var weatherIconURL: URL {
+        URL(string: "https://openweathermap.org/img/wn/\(forecast.weather[0].icon)@2x.png")!
+    }
 }

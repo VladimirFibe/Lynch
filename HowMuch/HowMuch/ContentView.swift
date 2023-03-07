@@ -2,13 +2,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Button {
+            
+        } label: {
+            Text("7")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(width: 80, height: 80)
+                    .background(.purple)
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
         }
-        .padding()
+
     }
 }
 

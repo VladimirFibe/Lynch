@@ -2,4 +2,4 @@
 
 [mockaroo](https://www.mockaroo.com)
 
-![](/img/1.png)
+![](img/1.png)
